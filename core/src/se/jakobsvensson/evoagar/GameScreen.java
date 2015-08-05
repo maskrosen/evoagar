@@ -1,5 +1,7 @@
 package se.jakobsvensson.evoagar;
 
+import se.jakobsvensson.evoagar.systems.RenderSystem;
+
 import com.artemis.World;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
@@ -14,12 +16,16 @@ public class GameScreen implements Screen{
 	public GameScreen(SpriteBatch batch, Camera camera){
 		this.batch=batch;
 		this.camera=camera;
+		initialize();
 		
 	}
 	
 	public void initialize(){
 		
 		this.world = new World();
+		world.setSystem(new RenderSystem(camera));
+		world.initialize();
+		world.addEntity(EntityFactory.createOrganism(world, 40, 200, 40));
 	}
 	
 	@Override
