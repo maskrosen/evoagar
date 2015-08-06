@@ -11,7 +11,9 @@ import com.artemis.ComponentMapper;
 import com.artemis.Entity;
 import com.artemis.EntitySystem;
 import com.artemis.utils.ImmutableBag;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
@@ -46,7 +48,7 @@ public class RenderSystem extends EntitySystem{
 	protected void processEntities(ImmutableBag<Entity> entities) {
 		shaperenderer.setProjectionMatrix(camera.combined);
 		shaperenderer.begin(ShapeType.Filled);
-		shaperenderer.flush();
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 		for(int i = 0; i<entities.size();i++){
 			Size size = sizemapper.get(entities.get(i));
 			Transform transform = transformmapper.get(entities.get(i));
