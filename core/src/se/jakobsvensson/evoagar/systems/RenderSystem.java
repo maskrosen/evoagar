@@ -22,7 +22,7 @@ public class RenderSystem extends EntitySystem{
 	private ComponentMapper<Transform> transformmapper;
 	
 	public RenderSystem(Camera camera) {
-		super(Aspect.getAspectForOne(Size.class, Transform.class));
+		super(Aspect.getAspectForAll(Size.class, Transform.class));
 		shaperenderer = new ShapeRenderer();
 		this.camera = camera;
 		
