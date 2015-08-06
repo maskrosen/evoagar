@@ -1,7 +1,7 @@
 package se.jakobsvensson.evoagar.systems;
 
 import se.jakobsvensson.evoagar.components.Size;
-import se.jakobsvensson.evoagar.components.Transform;
+import se.jakobsvensson.evoagar.components.Position;
 import se.jakobsvensson.evoagar.components.Velocity;
 
 import com.artemis.Aspect;
@@ -13,18 +13,18 @@ public class MovingEntitiesSystem extends EntityProcessingSystem{
 	
 	
 
-	private ComponentMapper<Transform> transformmapper;
+	private ComponentMapper<Position> transformmapper;
 	private ComponentMapper<Velocity> velocitymapper;
 	
 	public MovingEntitiesSystem() {
-		super(Aspect.getAspectForAll(Velocity.class, Transform.class));
+		super(Aspect.getAspectForAll(Velocity.class, Position.class));
 	}
 	
 	
 	@Override
 	protected void initialize(){
 		velocitymapper = world.getMapper(Velocity.class);
-		transformmapper = world.getMapper(Transform.class);
+		transformmapper = world.getMapper(Position.class);
 	}
 	
 	
@@ -37,7 +37,7 @@ public class MovingEntitiesSystem extends EntityProcessingSystem{
 		//	Tänk på att det finns en hastighet för X och en för Y
 		//4. Uppdatera positionen i transform-objektet med de nya positionerna så att de sparas
 		Velocity velocity = velocitymapper.get(e);
-		Transform transform = transformmapper.get(e);
+		Position transform = transformmapper.get(e);
 		float tpf = world.getDelta(); //Time per frame
 		
 		float x = transform.getX();

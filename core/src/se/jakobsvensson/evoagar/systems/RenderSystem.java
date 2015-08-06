@@ -4,7 +4,7 @@ package se.jakobsvensson.evoagar.systems;
 
 import se.jakobsvensson.evoagar.components.Size;
 import se.jakobsvensson.evoagar.components.Species;
-import se.jakobsvensson.evoagar.components.Transform;
+import se.jakobsvensson.evoagar.components.Position;
 
 import com.artemis.Aspect;
 import com.artemis.ComponentMapper;
@@ -22,11 +22,11 @@ public class RenderSystem extends EntitySystem{
 	private ShapeRenderer shaperenderer;
 	private Camera camera;
 	private ComponentMapper<Size> sizemapper;
-	private ComponentMapper<Transform> transformmapper;
+	private ComponentMapper<Position> transformmapper;
 	private ComponentMapper<Species> speciesmapper;
 	
 	public RenderSystem(Camera camera) {
-		super(Aspect.getAspectForAll(Size.class, Transform.class));
+		super(Aspect.getAspectForAll(Size.class, Position.class));
 		shaperenderer = new ShapeRenderer();
 		this.camera = camera;
 		
@@ -35,7 +35,7 @@ public class RenderSystem extends EntitySystem{
 	@Override
 	protected void initialize(){
 		sizemapper = world.getMapper(Size.class);
-		transformmapper = world.getMapper(Transform.class);
+		transformmapper = world.getMapper(Position.class);
 		speciesmapper = world.getMapper(Species.class);
 	}
 	
@@ -51,7 +51,7 @@ public class RenderSystem extends EntitySystem{
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 		for(int i = 0; i<entities.size();i++){
 			Size size = sizemapper.get(entities.get(i));
-			Transform transform = transformmapper.get(entities.get(i));
+			Position transform = transformmapper.get(entities.get(i));
 			Species species = speciesmapper.get(entities.get(i));
 			if(species!=null){
 				shaperenderer.setColor(species.getColor());

@@ -2,14 +2,14 @@ package se.jakobsvensson.evoagar.components;
 
 import com.artemis.Component;
 
-public class Transform extends Component{
+public class Position extends Component{
 
 	private float x;
 	private float y;
 	/**
 	 * Creates a transform component with initial position 0,0 and direction 0
 	 */
-	public Transform() {
+	public Position() {
 		this(0f, 0f);
 	}
 	/**
@@ -19,7 +19,7 @@ public class Transform extends Component{
 	 * @param y the y position
 	 * @param direction the direction
 	 */
-	public Transform(float x, float y) {
+	public Position(float x, float y) {
 		super();
 		setPosition(x, y);
 	}
