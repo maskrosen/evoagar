@@ -46,6 +46,7 @@ public class RenderSystem extends EntitySystem{
 	protected void processEntities(ImmutableBag<Entity> entities) {
 		shaperenderer.setProjectionMatrix(camera.combined);
 		shaperenderer.begin(ShapeType.Filled);
+		shaperenderer.flush();
 		for(int i = 0; i<entities.size();i++){
 			Size size = sizemapper.get(entities.get(i));
 			Transform transform = transformmapper.get(entities.get(i));
