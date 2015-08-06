@@ -3,6 +3,7 @@ package se.jakobsvensson.evoagar.systems;
 
 
 import se.jakobsvensson.evoagar.components.Size;
+import se.jakobsvensson.evoagar.components.Species;
 import se.jakobsvensson.evoagar.components.Transform;
 
 import com.artemis.Aspect;
@@ -20,6 +21,7 @@ public class RenderSystem extends EntitySystem{
 	private Camera camera;
 	private ComponentMapper<Size> sizemapper;
 	private ComponentMapper<Transform> transformmapper;
+	private ComponentMapper<Species> speciesmapper;
 	
 	public RenderSystem(Camera camera) {
 		super(Aspect.getAspectForAll(Size.class, Transform.class));
@@ -32,6 +34,7 @@ public class RenderSystem extends EntitySystem{
 	protected void initialize(){
 		sizemapper = world.getMapper(Size.class);
 		transformmapper = world.getMapper(Transform.class);
+		speciesmapper = world.getMapper(Species.class);
 	}
 	
 	@Override
@@ -46,6 +49,10 @@ public class RenderSystem extends EntitySystem{
 		for(int i = 0; i<entities.size();i++){
 			Size size = sizemapper.get(entities.get(i));
 			Transform transform = transformmapper.get(entities.get(i));
+			Species species = speciesmapper.get(entities.get(i));
+			if(species!=null){
+				shaperenderer.setColor(species.getColor());
+			}
 			shaperenderer.circle(transform.getX(), transform.getY(), size.getRadius());
 		}	
 		shaperenderer.end();

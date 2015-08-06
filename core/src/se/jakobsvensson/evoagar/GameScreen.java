@@ -5,6 +5,7 @@ import se.jakobsvensson.evoagar.systems.RenderSystem;
 import com.artemis.World;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class GameScreen implements Screen{
@@ -25,7 +26,7 @@ public class GameScreen implements Screen{
 		this.world = new World();
 		world.setSystem(new RenderSystem(camera));
 		world.initialize();
-		world.addEntity(EntityFactory.createOrganism(world, 40, 200, 40));
+		world.addEntity(EntityFactory.createOrganism(world, 400, 200, 40, Color.PURPLE));
 	}
 	
 	@Override
