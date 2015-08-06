@@ -1,5 +1,6 @@
 package se.jakobsvensson.evoagar;
 
+import se.jakobsvensson.evoagar.systems.MovingEntitiesSystem;
 import se.jakobsvensson.evoagar.systems.RenderSystem;
 
 import com.artemis.World;
@@ -25,6 +26,7 @@ public class GameScreen implements Screen{
 		
 		this.world = new World();
 		world.setSystem(new RenderSystem(camera));
+		world.setSystem(new MovingEntitiesSystem());
 		world.initialize();
 		world.addEntity(EntityFactory.createOrganism(world, 400, 200, 40, Color.PURPLE));
 	}

@@ -40,6 +40,13 @@ public class MovingEntitiesSystem extends EntityProcessingSystem{
 		Transform transform = transformmapper.get(e);
 		float tpf = world.getDelta(); //Time per frame
 		
+		float x = transform.getX();
+		float y = transform.getY();
+		
+		x = x + velocity.getXSpeed() * tpf;
+		y = y + velocity.getYSpeed() * tpf;
+		
+		transform.setPosition(x, y);
 		
 		
 		
